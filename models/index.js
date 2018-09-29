@@ -1,5 +1,5 @@
 module.exports = {
-  Users: require("./users"),
-  Flights: require("./flights"),
+  User: require("./users"),
+  Flight: require("./flights"),
   Aircraft: require("./aircrafts")
 };

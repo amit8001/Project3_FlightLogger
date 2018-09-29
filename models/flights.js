@@ -13,11 +13,11 @@ const flightSchema = new Schema({
   flightTime: {type: Number, require: true},
   aircraft: [{
     type: Schema.Types.ObjectId,
-    ref: Aircraft
+    ref: "Aircraft"
   }],
-  users: [{
+  user: [{
     type: Schema.Types.ObjectId,
-    ref: User
+    ref: "User"
   }],
   flight_day: {type: Number, default: 0},
   flight_night: {type: Number, default: 0},
