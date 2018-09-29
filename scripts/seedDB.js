@@ -82,12 +82,12 @@ const flights = [
       landingsDay: 1,
       landingsNight: 0,
      flightTime: 2,
-aircraft: [
-  "5baeeec9a48f7c36c492a880"
-],
-user: [
-"5baef29d3748406018b77aab"
-],
+// aircraft: [
+//   "5baeeec9a48f7c36c492a880"
+// ],
+// user: [
+// "5baef29d3748406018b77aab"
+// ],
 flight_day: 0.6,
 flight_night: 0.4,
 flight_actual: 0.3,
@@ -119,7 +119,7 @@ db.Aircraft
     process.exit(1);
   });
 
-  db.Flight
+ db.Flight
   .deleteMany({})
   .then(() => db.Flight.collection.insertMany(flights))
   .then(data => {
@@ -130,3 +130,20 @@ db.Aircraft
     console.error(err);
     process.exit(1);
   });
+
+  
+//  db.Flight.findOneAndUpdate(
+//    {}, 
+//    { $push: { user: 
+      
+//       () =>  db.User.findOne({firstName:"Cody"}, function(err,doc){
+//                   return doc._id;
+//             })
+       
+  
+//     } },
+//   // { $push: { aircraft: dbAircraft._id } }, 
+//    { new: true }
+//  )
+
+ 
