@@ -13,31 +13,41 @@ const user = [
       firstName: "Amitav",
       lastName: "Panda",
       licenseNo: "",
-      licenseType: ""
+      licenseType: "",
+      username: "amitav",
+      password: "a123456"
   },
   {
-      firstName: "Richardson",
-      lastName: "Damian",
+      firstName: "Damian",
+      lastName: "Riachardson",
       licenseNo: "23456",
-      licenseType: "private"
+      licenseType: "private",
+      username: "damian",
+      password: "d123456"
   },
   {
       firstName: "Shira",
       lastName: "Applebaum",
       licenseNo: "34567",
-      licenseType: "student"
+      licenseType: "student",
+      username: "shira",
+      password: "s123456"
   },
   {
       firstName: "Cody",
       lastName: "Granger",
       licenseNo: "45678",
-      licenseType: "airline transport pilot"
+      licenseType: "airline transport pilot",
+      username: "cody",
+      password: "c123456"
   },
   {
       firstName: "Houssam",
       lastName: "Moustafa",
       licenseNo: "56789",
-      licenseType: "commercial"
+      licenseType: "commercial",
+      username: "houssam",
+      password: "h123456"
   },
 ];
 
