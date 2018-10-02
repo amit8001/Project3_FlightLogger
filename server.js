@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 //app.use(routes);
 
+require("./controllers/flights.js")(app);
 require("./controllers/users.js")(app);
 
 
