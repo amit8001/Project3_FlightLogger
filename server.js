@@ -16,7 +16,8 @@ if (process.env.NODE_ENV === "production") {
 //app.use(routes);
 
 require("./controllers/users.js")(app);
-
+require("./controllers/aircrafts.js")(app);
+require("./controllers/flights.js")(app);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/flightlogger");
