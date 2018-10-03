@@ -21,17 +21,33 @@ const flights = [
       landingsDay: 1,
       landingsNight: 0,
      flightTime: 2,
-        aircraft: [
-        "5bafa0a54743691dac03c1a2"
-        ],
-        user: [
-        "5bafa13d6e4c2315387f12b8"
-        ],
+     aircraft : '5bb410fc79d91261541888aa',
+     user : '5bb13f034cd7124dbcce5fef',
 flight_day: 0.6,
 flight_night: 0.4,
 flight_actual: 0.3,
 flight_simulated: 0.7,
-  }
+  },
+
+  {
+    id: 2,
+    date: "2017-12-02",     // date dropdown ?
+    aircraftType: "C152",   // auto-populated from aircraft data
+    aircraftId: "N757QJ",   // dropdown from aircraft data
+    from: "47N",
+    to: "47N",
+    route: "",
+    remarks: "practice landings",
+    landingsDay: 1,
+    landingsNight: 0,
+   flightTime: 2,
+   aircraft : "5bb410fc79d91261541888aa",
+   user : "5bb13f034cd7124dbcce5fee",
+flight_day: 0.6,
+flight_night: 0.4,
+flight_actual: 0.3,
+flight_simulated: 0.7,
+}
 ];
 
 
