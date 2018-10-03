@@ -19,7 +19,7 @@ require("./controllers/users.js")(app);
 
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/flightlogger");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/flightlogger", { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {

@@ -1,22 +1,69 @@
 import React from "react";
+import API from "../../utils/API";
 import Icon from "../Icon";
+import Button from "../Button";
 import "./Header.css";
 
-const Header = (props) => (
-  <div className="page-header">
-    <Icon /> 
-    {/* <div class="btn-toolbar pull-right navbar-right" role="toolbar" aria-label="Toolbar with button groups">
-        <button type="button" class="btn btn-secondary">1</button>
-        <button type="button" class="btn btn-secondary">2</button>
-        <button type="button" class="btn btn-secondary">3</button>
-        <button type="button" class="btn btn-secondary pull-right">4</button>
-    </div> */}
-    {/* <div className="float-right"> */}
-    <button type="button" class="btn btn-primary float-right">Signup</button> 
-    <button type="button" class="btn btn-primary float-right">login</button>
-    {/* </div> */}
+class Header extends React.Component {
+  state = {
+    username: "",
+    firstName: "",
+    lastName: "",
+    licenseNo: "",
+    licenseType: ""
+  };
 
-  </div>
-);
+  handleSignup = event => {
+    console.log("Entered handleSignup()");
+    API.signup({username: "ham", 
+                password: "ham1",
+                firstName: "firstN",
+                lastName: "lastN",
+                licenseNo: "987",
+                licenseType: "ltype"
+              })
+      .then(
+        res => {
+          console.log("Login response: " + JSON.stringify(res.data));
+          this.setState({
+            username: res.username,
+            firstName: res.firstName,
+            lastName: res.lastName,
+            licenseNo: res.licenseNo,
+            licenseType: res.licenseType
+          });
+        }
+      )
+      .catch(err => console.log(err));
+  }
+
+  handleLogin = event => {
+    console.log("Entered handleLogin()");
+    API.login({username: "ham", password: "ham1"})
+      .then(
+        res => {
+          console.log("Login response: " + JSON.stringify(res.data));
+          this.setState({
+            username: res.username,
+            firstName: res.firstName,
+            lastName: res.lastName,
+            licenseNo: res.licenseNo,
+            licenseType: res.licenseType
+          });
+        }
+      )
+      .catch(err => console.log(err));
+  }
+  
+  render() {
+    return (
+      <div className="page-header">
+        <Icon /> 
+        <Button onClick={this.handleSignup}>Signup</Button>
+        <Button onClick={this.handleLogin}>Login</Button>
+      </div>
+    );
+  }
+}
   
 export default Header
