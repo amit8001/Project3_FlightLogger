@@ -40,29 +40,19 @@ app.get("/api/flights/:id", function(req, res) {
 //Below code is to submit/POST a flight document (!! WIP !!)
 
 app.post("/api/flight/submit", function(req, res) {
-  // Create a new Book in the database
-  db.Flight.create(req.body)
-    .then(function(dbFlight) {
-      // If a Book was created successfully, find one library (there's only one) and push the new Book's _id to the Library's `books` array
-      // { new: true } tells the query that we want it to return the updated Library -- it returns the original by default
-      // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-      return db.Flight.findOneAndUpdate(
-        
-          {}, //latest one that was just created...
-          { 
-            $push: { aircraft: req.body.aircraft._id }, //will get from request obj, will be sent when we submit the form
-            $push: { user: req.body.user._id } //will get from request obj, will be sent when we submit the form
 
-          }, 
-          { new: true }
-        );
-    })
-    .then(function(dbLibrary) {
-      // If the Library was updated successfully, send it back to the client
-      res.json(dbLibrary);
+  console.log(req.body);
+  var flight = new db.Flight(req.body); //need to use the same User var that was exported in index.js of models
+  //user.encryptPwd();
+
+  db.Flight.create(flight)
+    .then(function(dbFlight) {
+      // If saved successfully, send the the new User document to the client
+      res.json(dbFlight);
+
     })
     .catch(function(err) {
-      // If an error occurs, send it back to the client
+      // If an error occurs, send the error to the client
       res.json(err);
     });
 });
