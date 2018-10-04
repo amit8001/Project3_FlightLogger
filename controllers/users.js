@@ -10,6 +10,15 @@ module.exports = function(app) {
   
     db.User.create(user)
       .then(function(dbUser) {
+        db.User.findOne({ "username": req.body.username },
+        function (err, doc) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(doc);
+            res.json(doc);
+          }
+        })
         // If saved successfully, send the the new User document to the client
         res.json(dbUser);
 
