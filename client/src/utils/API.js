@@ -1,6 +1,19 @@
 import axios from "axios";
 
 export default {
+  signup: function(signupInfo) {
+    console.log("Entered API.signup(" + JSON.stringify(signupInfo) + ")");
+    let response =  axios.post("/api/register", signupInfo);
+    console.log("Response: " + JSON.stringify(response));
+    return response;
+  },
+  login: function(loginInfo) {
+    console.log("Enterd API.login(" + JSON.stringify(loginInfo) + ")");
+    let response =  axios.post("/api/login", loginInfo);
+    console.log("Response: " + JSON.stringify(response));
+    return response;
+  },
+
   // Gets all books
   getBooks: function() {
     return axios.get("/api/books");
