@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import Icon from "../Icon";
 import Button from "../Button";
 import "./Header.css";
+import Logo from "./capture.jpg";
 
 class Header extends React.Component {
   state = {
@@ -94,7 +94,23 @@ class Header extends React.Component {
   render() {
     return (
       <div className="page-header">
-        <Icon /> 
+
+      <nav className="navbar navbar-expand-lg navbar-light">
+      <img className="loggerLogo" src={Logo} />
+          <a className="navbar-brand" href="#">Sky Logger</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <a className="nav-link" href="#">Home  </a>
+              </li>
+                    
+            </ul>
+
+          </div>
 
         <Button 
           type="signupModal"
@@ -111,7 +127,11 @@ class Header extends React.Component {
           handleSubmit={this.handleSubmitLogin} 
           handleUserNameChange={this.handleUserNameChange}
           handlePasswordChange={this.handlePasswordChange}
-        >Login</Button>
+        >Login
+        </Button>
+        
+        </nav>
+
       </div>
     );
   }
