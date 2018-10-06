@@ -1,0 +1,125 @@
+body {
+    background-image: url("./Capture.JPG");
+    width: 50%;
+    height: 50%;
+    position: fixed;
+    background-size: cover;
+    background-position: 10% 10%;
+    background-repeat: no-repeat;
+}
+.cvr-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    padding-top: 2vh;
+    position: relative;
+}
+.cover-btn {
+    font-family: 'Teko', sans-serif;
+    font-weight: 700;
+    font-size: 3.7rem;
+    text-align: center;
+    width: 75%;
+    display: block;
+    margin: 0 auto;
+    padding: .5rem 7rem;
+    color: #013369;
+    border: .2rem solid rgb(1, 51, 105);
+    background-color: rgba(190,190,215,.7);
+    border-radius: 3rem;
+    transition: 1s;
+    position: relative;
+    z-index: 1;
+}
+.cover-btn:hover, .cover-btn:active {
+    color: rgba(200,200,255,.5);
+    background-color: #013369;
+}
+.bottom {
+    transform: translateY(30vh);
+    padding-top: 9rem;
+}
+.btn-open {
+    transform: translatey(25vh);
+}
+
+.slideshow { 
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+  
+.slideshow li { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 28s; 
+}
+
+.slideshow li:nth-child(1) { 
+    /* background-image: url("../img/hero-img2.png")  */
+    background-image: url("https://pp-cdn-madavor.netdna-ssl.com/2018/03/four-seat-singles.jpg");
+}
+.slideshow li:nth-child(2) { 
+    /* background-image: url("../img/hero-img3.png"); */
+    background-image: url("https://i.pinimg.com/originals/29/e9/42/29e942fc80d79d339bc2b34a565299b1.jpg");
+    animation-delay: 4s; 
+}
+.slideshow li:nth-child(3) { 
+    /* background-image: url("../img/hero-img5.png"); */
+    background-image: url("https://www.piper.com/wp-content/uploads/2017/09/Archer_A2A_2ship.jpg");
+    animation-delay: 8s; 
+}
+.slideshow li:nth-child(4) { 
+    /* background-image: url("../img/hero-img4.png"); */
+    background-image: url("https://pp-cdn-madavor.netdna-ssl.com/2017/01/piper-m350-web.jpg");
+    animation-delay: 12s; 
+}
+.slideshow li:nth-child(5) { 
+    /* background-image: url("../img/hero-img4.png"); */
+    background-image: url("https://www.piper.com/wp-content/uploads/2017/09/JB_10655.jpg");
+    animation-delay: 16s; 
+}
+.slideshow li:nth-child(6) { 
+    /* background-image: url("../img/hero-img4.png"); */
+    background-image: url("https://us-east.manta.joyent.com/condenast/public/cnt-services/production/2015/03/10/54ff1ce26450ad091fda742e_plane-flying-sunset.jpg");
+    animation-delay: 20s; 
+}
+.slideshow li:nth-child(7) { 
+    background-image: url("./Capture.JPG");
+    /* background-image: url("https://www.wipaire.com/wp-content/uploads/2016/12/Cessna-172-with-custom-instrument-panels.jpg"); */
+    animation-delay: 24s; 
+}
+
+
+
+@keyframes imageAnimation { 
+    0% { 
+        opacity: 0; 
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}
