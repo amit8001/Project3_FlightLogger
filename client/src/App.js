@@ -1,10 +1,9 @@
 import React from "react";
+import Navbar from "./components/Navbar";
 import Header from "./components/Header";
-import Nav from "./components/Nav";
 import Splash from "./components/Splash";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
 
 import {
   BrowserRouter as Router,
@@ -17,8 +16,8 @@ import {
 const App = () => (
   <Router>
     <div>
-      <Header />
-      <Nav />
+      <Header /> 
+      <Navbar />  
       <Splash />
         {/* <Switch>
           <Route exact path="/" component={Books} />

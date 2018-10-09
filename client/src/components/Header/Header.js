@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import Icon from "../Icon";
 import Button from "../Button";
 import "./Header.css";
+import Logo from "./capture.jpg";
 
 class Header extends React.Component {
   state = {
@@ -94,7 +94,15 @@ class Header extends React.Component {
   render() {
     return (
       <div className="page-header">
-        <Icon /> 
+
+      <nav className="navbar navbar-expand-lg navbar-light">
+      <img className="loggerLogo" src={Logo} />
+          
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+           
+
+          </div>
 
         <Button 
           type="signupModal"
@@ -111,7 +119,11 @@ class Header extends React.Component {
           handleSubmit={this.handleSubmitLogin} 
           handleUserNameChange={this.handleUserNameChange}
           handlePasswordChange={this.handlePasswordChange}
-        >Login</Button>
+        >Login
+        </Button>
+        
+        </nav>
+
       </div>
     );
   }
