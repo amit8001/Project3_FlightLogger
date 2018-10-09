@@ -1,10 +1,9 @@
 import React from "react";
+import Navbar from "./components/Navbar";
 import Header from "./components/Header";
-import Nav from "./components/Nav";
 import Splash from "./components/Splash";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
 
 import {
   BrowserRouter as Router,
@@ -24,7 +23,7 @@ class App extends React.Component {
       <Router>
         <div>
           <Header />
-          <Nav />
+          <Navbar />
           <Splash />
             {/* <Switch>
               <Route exact path="/" component={Books} />

@@ -1,8 +1,8 @@
 import React from "react";
 import API from "../../utils/API";
-import Icon from "../Icon";
 import Button from "../Button";
 import "./Header.css";
+import Logo from "./capture.jpg";
 
 class Header extends React.Component {
   state = {
@@ -102,7 +102,8 @@ class Header extends React.Component {
   render() {
     return (
       <div className="page-header">
-        <Icon /> 
+
+        <img className="loggerLogo" src={Logo} />
 
         {/* Signup Button/Modal */}
         <Button 
