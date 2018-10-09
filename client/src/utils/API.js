@@ -8,11 +8,14 @@ export default {
     return response;
   },
   login: function(loginInfo) {
-    console.log("Enterd API.login(" + JSON.stringify(loginInfo) + ")");
+    console.log("Entered API.login(" + JSON.stringify(loginInfo) + ")");
     let response =  axios.post("/api/login", loginInfo);
     console.log("Response: " + JSON.stringify(response));
     return response;
   },
+
+  //////////////////////////////////////////////////////////////
+  // BELOW NOT USED 
 
   // Gets all books
   getBooks: function() {

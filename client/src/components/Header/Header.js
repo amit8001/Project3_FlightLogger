@@ -6,39 +6,25 @@ import "./Header.css";
 
 class Header extends React.Component {
   state = {
+    _userId: "",
     username: "",
     password: "",
     firstName: "",
     lastName: "",
     licenseNo: "",
-    licenseType: ""
+    licenseType: "",
+    LoggedIn: false
   };
 
-  handleUserNameChange = event => {
-    this.setState({ username: event.target.value });
-  };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    console.log("handleInputChange: " + name + " / " + value);
+    this.setState({
+      [name]: value
+    });
+  }
 
-  handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
-  };
-
-  handleFirstNameChange = event => {
-    this.setState({ firstName: event.target.value });
-  };
-
-  handleLastNameChange = event => {
-    this.setState({ lastName: event.target.value });
-  };
-
-  handleLicenseNoChange = event => {
-    this.setState({ licenseNo: event.target.value });
-  };
-
-  handleLicenseTypeChange = event => {
-    this.setState({ licenseType: event.target.value });
-  };
-
-  handleSubmitSignup = event => {
+  handleSignup = event => {
     event.preventDefault();
     console.log("Entered handleSignup()");
     API.signup({username: this.state.username, 
@@ -59,11 +45,13 @@ class Header extends React.Component {
             alert(errmsg);
           } else {
             this.setState({
-              username: res.username,
-              firstName: res.firstName,
-              lastName: res.lastName,
-              licenseNo: res.licenseNo,
-              licenseType: res.licenseType
+              _userId: res.data._id,
+              username: res.data.username,
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+              licenseNo: res.data.licenseNo,
+              licenseType: res.data.licenseType,
+              loggedIn: true,
             });
           }
         }
@@ -71,7 +59,7 @@ class Header extends React.Component {
       .catch(err => console.log(err));
   }
 
-  handleSubmitLogin = event => {
+  handleLogin = event => {
     event.preventDefault();
     console.log("Entered handleLogin()");
     API.login({username: this.state.username, 
@@ -79,16 +67,36 @@ class Header extends React.Component {
       .then(
         res => {
           console.log("Login response: " + JSON.stringify(res.data));
-          this.setState({
-            username: res.username,
-            firstName: res.firstName,
-            lastName: res.lastName,
-            licenseNo: res.licenseNo,
-            licenseType: res.licenseType
-          });
+          if (res.data) {
+            this.setState({
+              _userId: res.data._id,
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+              licenseNo: res.data.licenseNo,
+              licenseType: res.data.licenseType,
+              loggedIn: true,
+            });
+          } else {
+            alert("Invalid username or password");
+          }
         }
       )
       .catch(err => console.log(err));
+  }
+  
+  handleLogout = event => {
+    event.preventDefault();
+    console.log("Entered handleLogout()");
+    this.setState({
+      _userId: "",
+      username: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      licenseNo: "",
+      licenseType: "",
+      loggedIn: false,
+    });
   }
   
   render() {
@@ -96,22 +104,28 @@ class Header extends React.Component {
       <div className="page-header">
         <Icon /> 
 
+        {/* Signup Button/Modal */}
         <Button 
           type="signupModal"
-          handleSubmit={this.handleSubmitSignup} 
-          handleUserNameChange={this.handleUserNameChange}
-          handlePasswordChange={this.handlePasswordChange}
-          handleFirstNameChange={this.handleFirstNameChange}
-          handleLastNameChange={this.handleLastNameChange}
-          handleLicenseNoChange={this.handleLicenseNoChange}
-          handleLicenseTypeChange={this.handleLicenseTypeChange}>Signup</Button>
+          loggedIn={this.state.loggedIn}
+          handleSubmit={this.handleSignup} 
+          handleInputChange={this.handleInputChange}
+          >Signup</Button>
 
+        {/* Login Button/Modal */}
         <Button 
           type="loginModal"
-          handleSubmit={this.handleSubmitLogin} 
-          handleUserNameChange={this.handleUserNameChange}
-          handlePasswordChange={this.handlePasswordChange}
+          loggedIn={this.state.loggedIn}
+          handleSubmit={this.handleLogin} 
+          handleInputChange={this.handleInputChange}
         >Login</Button>
+
+        {/* Logout Button */}
+        <button
+          className={"btn btn-primary btn-sm float-right " + (this.state.loggedIn ? "d-block" : "d-none")}
+          onClick={this.handleLogout}
+        >Logout</button>
+
       </div>
     );
   }
