@@ -3,22 +3,44 @@ import LoginInputs from "../LoginInputs";
 
 const SignupInputs = (props) => (
   <div>
-    <LoginInputs handleUserNameChange={props.handleUserNameChange} handlePasswordChange={props.handlePasswordChange} />
+    <LoginInputs handleInputChange={props.handleInputChange} />
 
     <div className="input-group mb-3">
       <div className="input-group-prepend">
         <span className="input-group-text">First / last name</span>
       </div>
-      <input type="text" className="form-control" id="first-name" onChange={props.handleFirstNameChange} aria-label="First name" />
-      <input type="text" className="form-control" id="last-name" onChange={props.handleLastNameChange} aria-label="Last name" />
+      <input 
+        name="firstName"
+        type="text" 
+        className="form-control" 
+        onChange={props.handleInputChange} 
+        aria-label="First name" 
+      />
+      <input 
+        name="lastName"
+        type="text" 
+        className="form-control" 
+        onChange={props.handleInputChange} 
+        aria-label="Last name" 
+      />
     </div>
 
     <div className="input-group mb-3">
       <div className="input-group-prepend">
-        <span className="input-group-text" >License No.</span>
+        <span className="input-group-text" >License No./License Type</span>
       </div>
-      <input type="text" className="form-control" onChange={props.handleLicenseNoChange} aria-label="License Number"/>
-      <input type="text" className="form-control" onChange={props.handleLicenseTypeChange} aria-label="License type"/>
+      <input 
+        name="licenseNo"
+        type="text" 
+        className="form-control" 
+        onChange={props.handleInputChange} aria-label="License Number"
+      />
+      <input 
+        name="licenseType" 
+        type="text" 
+        className="form-control" 
+        onChange={props.handleInputChange} aria-label="License type"
+      />
     </div>
   </div>
 );

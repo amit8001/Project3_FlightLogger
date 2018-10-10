@@ -8,17 +8,22 @@ export default {
     return response;
   },
   login: function(loginInfo) {
-    console.log("Enterd API.login(" + JSON.stringify(loginInfo) + ")");
+    console.log("Entered API.login(" + JSON.stringify(loginInfo) + ")");
     let response =  axios.post("/api/login", loginInfo);
     console.log("Response: " + JSON.stringify(response));
     return response;
   },
 
+<<<<<<< HEAD
   getFlightsForUser: function(query) {
     return axios.get("/api/flights/" + query);
    // return axios.get("/api/flights/");
   },
 
+=======
+  //////////////////////////////////////////////////////////////
+  // BELOW NOT USED 
+>>>>>>> master
 
   // Gets all books
   getBooks: function() {

@@ -2,63 +2,14 @@ import React from "react";
 import LoginInputs from "../LoginInputs"
 import SignupInputs from "../SignupInputs"
 
-// onClick: "handleSignup()" | "handleLogin()""
-// type: "signupModal" | "loginModal"
-// children: "Signup" | "Login"
-
-// const loginInput = props => (
-//   <div>
-//     <div className="input-group mb-3">
-//       <div className="input-group-prepend">
-//         <span className="input-group-text" >Username</span>
-//       </div>
-//       <input type="text" className="form-control" onChange={props.handleUserNameChange} aria-label="Username"/>
-//     </div>
-
-//     <div className="input-group mb-3">
-//       <div className="input-group-prepend">
-//         <span className="input-group-text" >Password</span>
-//       </div>
-//       <input type="password" className="form-control" onChange={props.handlePasswordChange} aria-label="Password"/>
-//     </div>
-//   </div>
-// );
-
-// const signupInput = props => (
-//   <div>
-//     <LoginInput handleUserNameChange={props.handleUserNameChange} handlePasswordChange={props.handlePasswordChange} />
-
-//     <div className="input-group mb-3">
-//       <div className="input-group-prepend">
-//         <span className="input-group-text">First / last name</span>
-//       </div>
-//       <input type="text" className="form-control" onChange={props.handleFirstNameChange} aria-label="First name" />
-//       <input type="text" className="form-control" onChange={props.handleLastNameChange} aria-label="Last name" />
-//     </div>
-
-//     <div className="input-group mb-3">
-//       <div className="input-group-prepend">
-//         <span className="input-group-text" >License No.</span>
-//       </div>
-//       <input type="text" className="form-control" onChange="handleLicenseNoChange" aria-label="License Number"/>
-//       <input type="text" className="form-control" onChange="handleLicenseTypeChange" aria-label="License type"/>
-//     </div>
-//   </div>
-// );
-
 const Button = ({ type, 
-                  handleSubmit, 
-                  handleUserNameChange, 
-                  handlePasswordChange, 
-                  handleFirstNameChange, 
-                  handleLastNameChange, 
-                  handleLicenseNoChange, 
-                  handleLicenseTypeChange, 
+                  loggedIn,
+                  handleSubmit,
+                  handleInputChange, 
                   children }) => (
   <span>
     <button
-      // onClick={onClick} 
-      className="btn btn-primary btn-sm float-right"
+      className={"btn btn-primary btn-sm float-right " + (loggedIn ? "d-none" : "d-block")}
       data-toggle="modal" 
       data-target={"#" + type}
     >
@@ -78,23 +29,15 @@ const Button = ({ type,
           
           <div className="modal-body">
             { (type === "signupModal") 
-                ? (<SignupInputs
-                    handleUserNameChange={handleUserNameChange}
-                    handlePasswordChange={handlePasswordChange}
-                    handleFirstNameChange={handleFirstNameChange}
-                    handleLastNameChange={handleLastNameChange}
-                    handleLicenseNoChange={handleLicenseNoChange}
-                    handleLicenseTypeChange={handleLicenseTypeChange} />
-                  )
-                : (<LoginInputs
-                    handleUserNameChange={handleUserNameChange} 
-                    handlePasswordChange={handlePasswordChange} />
-                  )
+                ? ( <SignupInputs handleInputChange={handleInputChange}/> )
+                : ( <LoginInputs handleInputChange={handleInputChange}/> )
             }
           </div>
 
           <div className="modal-footer">
+            {/* Close Button */}
             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            {/* Submit Button */}
             <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={handleSubmit}>Submit</button>
           </div>
 

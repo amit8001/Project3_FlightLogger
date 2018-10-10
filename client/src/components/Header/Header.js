@@ -1,123 +1,36 @@
 import React from "react";
-import API from "../../utils/API";
-import Icon from "../Icon";
 import Button from "../Button";
 import "./Header.css";
+import Logo from "./capture.jpg";
 
-class Header extends React.Component {
-  state = {
-    _id:  "", 
-    username: "",
-    password: "",
-    firstName: "",
-    lastName: "",
-    licenseNo: "",
-    licenseType: ""
-  };
+const Header = (props) => (
+  <div className="page-header">
 
-  handleUserNameChange = event => {
-    this.setState({ username: event.target.value });
-  };
+    <img className="loggerLogo" src={Logo} />
 
-  handlePasswordChange = event => {
-    this.setState({ password: event.target.value });
-  };
+    {/* Signup Button/Modal */}
+    <Button 
+      type="signupModal"
+      loggedIn={props.loggedIn}
+      handleSubmit={props.handleSignup} 
+      handleInputChange={props.handleInputChange}
+      >Signup</Button>
 
-  handleFirstNameChange = event => {
-    this.setState({ firstName: event.target.value });
-  };
+    {/* Login Button/Modal */}
+    <Button 
+      type="loginModal"
+      loggedIn={props.loggedIn}
+      handleSubmit={props.handleLogin} 
+      handleInputChange={props.handleInputChange}
+    >Login</Button>
 
-  handleLastNameChange = event => {
-    this.setState({ lastName: event.target.value });
-  };
+    {/* Logout Button */}
+    <button
+      className={"btn btn-primary btn-sm float-right " + (props.loggedIn ? "d-block" : "d-none")}
+      onClick={props.handleLogout}
+    >Logout</button>
 
-  handleLicenseNoChange = event => {
-    this.setState({ licenseNo: event.target.value });
-  };
+  </div>
+)
 
-  handleLicenseTypeChange = event => {
-    this.setState({ licenseType: event.target.value });
-  };
-
-  handleSubmitSignup = event => {
-    event.preventDefault();
-    console.log("Entered handleSignup()");
-    API.signup({username: this.state.username, 
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                licenseNo: this.state.licenseNo,
-                licenseType: this.state.licenseType
-              })
-      .then(
-
-        res => {
-          console.log("Signup response: " + JSON.stringify(res.data.errmsg));
-          if (res.data.errmsg) {
-            let errmsg = (res.data.code === 11000) ? 
-              "Duplicate username already exists!" : 
-              res.data.errmsg;
-            alert(errmsg);
-          } else {
-            this.setState({
-              _id: res._id,
-              username: res.username,
-              firstName: res.firstName,
-              lastName: res.lastName,
-              licenseNo: res.licenseNo,
-              licenseType: res.licenseType
-            });
-          }
-        }
-      )
-      .catch(err => console.log(err));
-  }
-
-  handleSubmitLogin = event => {
-    event.preventDefault();
-    console.log("Entered handleLogin()");
-    API.login({username: this.state.username, 
-               password: this.state.password})
-      .then(
-        res => {
-          console.log("Login response: " + JSON.stringify(res.data));
-          this.setState({
-            _id: res._id,
-            username: res.username,
-            firstName: res.firstName,
-            lastName: res.lastName,
-            licenseNo: res.licenseNo,
-            licenseType: res.licenseType
-          });
-        }
-      )
-      .catch(err => console.log(err));
-  }
-  
-  render() {
-    return (
-      <div className="page-header">
-        <Icon /> 
-
-        <Button 
-          type="signupModal"
-          handleSubmit={this.handleSubmitSignup} 
-          handleUserNameChange={this.handleUserNameChange}
-          handlePasswordChange={this.handlePasswordChange}
-          handleFirstNameChange={this.handleFirstNameChange}
-          handleLastNameChange={this.handleLastNameChange}
-          handleLicenseNoChange={this.handleLicenseNoChange}
-          handleLicenseTypeChange={this.handleLicenseTypeChange}>Signup</Button>
-
-        <Button 
-          type="loginModal"
-          handleSubmit={this.handleSubmitLogin} 
-          handleUserNameChange={this.handleUserNameChange}
-          handlePasswordChange={this.handlePasswordChange}
-        >Login</Button>
-      </div>
-    );
-  }
-}
-  
 export default Header

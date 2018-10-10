@@ -3,7 +3,14 @@ import "./Splash.css";
 
 const Splash = () => (
   <nav className="jumbotron">
-    <h1>Splash panel: place slide show here</h1>
+    <ul className="slideshow">
+    <li/>
+    <li/>
+    <li/>
+    <li/>
+    <li/>
+    <li/>
+    </ul>
   </nav>
 );
 
