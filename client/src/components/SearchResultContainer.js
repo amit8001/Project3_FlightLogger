@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import FlightList from "./FlightList_test";
 import API from "../utils/API";
 
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Link,
+//   Switch,
+//   Redirect
+// } from "react-router-dom"
+
 class SearchResultContainer extends Component {
   state = {
       results: []
@@ -18,6 +26,10 @@ class SearchResultContainer extends Component {
   }
 
   render() {
+
+    //added 10/9
+    //const { component: Component, ...props } = this.props
+
     return (
       <div>
            {
@@ -30,6 +42,15 @@ class SearchResultContainer extends Component {
                   )   
 
               }
+
+              {/* <Route 
+                {...props} 
+                  render={props => (
+                  this.state.loggedIn ?
+                    <Component {...props} /> :
+                    <Redirect to='/' />
+                )} 
+              /> */}
       </div>
     );
   }

@@ -14,16 +14,11 @@ export default {
     return response;
   },
 
-<<<<<<< HEAD
   getFlightsForUser: function(query) {
     return axios.get("/api/flights/" + query);
    // return axios.get("/api/flights/");
   },
 
-=======
-  //////////////////////////////////////////////////////////////
-  // BELOW NOT USED 
->>>>>>> master
 
   // Gets all books
   getBooks: function() {

@@ -51,7 +51,7 @@ function aircraft_attr(aircraft) {
 </div>`;
 };
  
-function dateFormatter(cell: any) {
+function dateFormatter(cell) {
   if (!cell) {
         return "";
   }
