@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FlightList from "./FlightList_test";
+import FlightList from "./FlightList";
 import API from "../utils/API";
 
 // import {
