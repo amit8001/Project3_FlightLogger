@@ -14,6 +14,12 @@ export default {
     return response;
   },
 
+  getFlightsForUser: function(query) {
+    return axios.get("/api/flights/" + query);
+   // return axios.get("/api/flights/");
+  },
+
+
   // Gets all books
   getBooks: function() {
     return axios.get("/api/books");

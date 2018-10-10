@@ -5,6 +5,7 @@ import Splash from "./components/Splash";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
 // import Nav from "./components/Nav";
+import SearchResultContainer from "./components/SearchResultContainer";
 
 import {
   BrowserRouter as Router,
@@ -19,13 +20,11 @@ const App = () => (
     <div>
       <Header />
       <Nav />
-      <Splash />
-        {/* <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch> */}
+      {/*<Splash />*/}
+         <Switch>
+          <Route exact path="/" component={Splash} />
+          <Route exact path="/api/flights/:id" component={SearchResultContainer} />
+        </Switch> 
     </div>
   </Router>
 );

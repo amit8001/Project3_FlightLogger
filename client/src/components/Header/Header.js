@@ -6,6 +6,7 @@ import "./Header.css";
 
 class Header extends React.Component {
   state = {
+    _id:  "", 
     username: "",
     password: "",
     firstName: "",
@@ -59,6 +60,7 @@ class Header extends React.Component {
             alert(errmsg);
           } else {
             this.setState({
+              _id: res._id,
               username: res.username,
               firstName: res.firstName,
               lastName: res.lastName,
@@ -80,6 +82,7 @@ class Header extends React.Component {
         res => {
           console.log("Login response: " + JSON.stringify(res.data));
           this.setState({
+            _id: res._id,
             username: res.username,
             firstName: res.firstName,
             lastName: res.lastName,
