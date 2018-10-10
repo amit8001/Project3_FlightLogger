@@ -12,6 +12,7 @@ const LoginInputs = (props) => (
         className="form-control" 
         onChange={props.handleInputChange} 
         aria-label="Username"
+        autoFocus   // not working
       />
     </div>
 
