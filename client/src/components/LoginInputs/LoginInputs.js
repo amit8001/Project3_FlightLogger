@@ -6,14 +6,26 @@ const LoginInputs = (props) => (
       <div className="input-group-prepend">
         <span className="input-group-text" >Username</span>
       </div>
-      <input type="text" className="form-control" onChange={props.handleUserNameChange} aria-label="Username"/>
+      <input 
+        name="username"
+        type="text" 
+        className="form-control" 
+        onChange={props.handleInputChange} 
+        aria-label="Username"
+      />
     </div>
 
     <div className="input-group mb-3">
       <div className="input-group-prepend">
         <span className="input-group-text" >Password</span>
       </div>
-      <input type="password" className="form-control" onChange={props.handlePasswordChange} aria-label="Password"/>
+      <input 
+        name="password"
+        type="password" 
+        className="form-control" 
+        onChange={props.handleInputChange} 
+        aria-label="Password"
+      />
     </div>
   </div>
 );
