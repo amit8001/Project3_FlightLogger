@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import Splash from "./components/Splash";
 // import Detail from "./pages/Detail";
 // import NoMatch from "./pages/NoMatch";
+// import Nav from "./components/Nav";
+import SearchResultContainer from "./components/SearchResultContainer";
 
 import {
   BrowserRouter as Router,
@@ -121,13 +123,28 @@ class App extends React.Component {
             handleLogout={this.handleLogout}
           />
           <Navbar />
-          <Splash />
+         
             {/* <Switch>
               <Route exact path="/" component={Books} />
               <Route exact path="/books" component={Books} />
               <Route exact path="/books/:id" component={Detail} />
               <Route component={NoMatch} />
             </Switch> */}
+            <Switch>
+          <Route exact path="/" component={Splash} />
+          
+          {/* { this.state.loggedIn && 
+         <Route exact path="/api/flights/:id" 
+            //component={SearchResultContainer} 
+            
+            render={(props) => <SearchResultContainer {...props} user_Id={this.state._userId} />}
+            
+            />
+        }    */}
+
+          <Route exact path="/api/flights/:id" component={SearchResultContainer}/>
+
+        </Switch> 
         </div>
       </Router>
     );
