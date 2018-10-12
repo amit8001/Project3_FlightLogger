@@ -42,7 +42,7 @@ import React, { Component } from 'react';
 import * as moment from 'moment';
 import {BootstrapTable, 
        TableHeaderColumn} from 'react-bootstrap-table';
-import '../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css'
+import '../../../node_modules/react-bootstrap-table/css/react-bootstrap-table.css'
 
 
 function aircraft_attr(aircraft) {

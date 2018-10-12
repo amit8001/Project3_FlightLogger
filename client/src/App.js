@@ -3,18 +3,8 @@ import API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Splash from "./components/Splash";
-// import Detail from "./pages/Detail";
-// import NoMatch from "./pages/NoMatch";
-// import Nav from "./components/Nav";
-import SearchResultContainer from "./components/SearchResultContainer";
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect
-} from "react-router-dom"
+import SearchResultContainer from "./components/SearchResults";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
@@ -112,6 +102,12 @@ class App extends React.Component {
   }
   
   render() {
+    const isLoggedIn = this.state.loggedIn;
+
+    let main_panel = isLoggedIn 
+        ? <SearchResultContainer user_id= {this.state._userId}/> 
+        : <Splash/>;
+
     return (
       <Router>
         <div>
@@ -123,30 +119,10 @@ class App extends React.Component {
             handleLogout={this.handleLogout}
           />
           <Navbar />
-         
-            {/* <Switch>
-              <Route exact path="/" component={Books} />
-              <Route exact path="/books" component={Books} />
-              <Route exact path="/books/:id" component={Detail} />
-              <Route component={NoMatch} />
-            </Switch> */}
-            <Switch>
-          <Route exact path="/" component={Splash} />
           
-          {/* { this.state.loggedIn && 
-         <Route exact path="/api/flights/:id" 
-            //component={SearchResultContainer} 
-            
-            render={(props) => <SearchResultContainer {...props} user_Id={this.state._userId} />}
-            
-            />
-        }    */}
-
-          <Route exact path="/api/flights/:id" component={SearchResultContainer}/>
-
-        </Switch> 
+          {main_panel}
         </div>
-      </Router>
+    </Router>
     );
   }
 }
