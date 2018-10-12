@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FlightList from "./FlightList";
-import API from "../utils/API";
+import API from "../../utils/API";
 
 // import {
 //   BrowserRouter as Router,
@@ -17,7 +17,7 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    API.getFlightsForUser(this.props.match.params.id)
+    API.getFlightsForUser(this.props.user_id)
     .then(res => {
       console.log(res.data);
       this.setState({ results: res.data});
