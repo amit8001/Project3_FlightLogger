@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FlightList from "./FlightList";
 import API from "../../utils/API";
+import "./SearchResultContainer.css";
+import AddFlightModal from "./AddFlightModal";
 
 // import {
 //   BrowserRouter as Router,
@@ -43,14 +45,9 @@ class SearchResultContainer extends Component {
 
               }
 
-              {/* <Route 
-                {...props} 
-                  render={props => (
-                  this.state.loggedIn ?
-                    <Component {...props} /> :
-                    <Redirect to='/' />
-                )} 
-              /> */}
+        <div id ="footer">
+              <AddFlightModal />
+        </div> 
       </div>
     );
   }
