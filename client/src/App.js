@@ -3,6 +3,9 @@ import API from "./utils/API";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Splash from "./components/Splash";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import WhoWeAre from "./components/WhoWeAre";
 import SearchResultContainer from "./components/SearchResults";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -15,7 +18,8 @@ class App extends React.Component {
     lastName: "",
     licenseNo: "",
     licenseType: "",
-    LoggedIn: false
+    LoggedIn: false,
+    currentPage: "Home"
   };
   
   handleInputChange = event => {
@@ -101,12 +105,35 @@ class App extends React.Component {
     });
   }
   
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+    
+  };
+
+ 
+
   render() {
+  
+
     const isLoggedIn = this.state.loggedIn;
 
     let main_panel = isLoggedIn 
         ? <SearchResultContainer user_id= {this.state._userId}/> 
         : <Splash/>;
+  
+
+    const renderGroup = () => {
+          switch (this.state.currentPage) {
+            case "Home":
+              return main_panel ;
+            case "About":
+              return <About />;
+            case "WhoWeAre":
+              return <WhoWeAre />;
+            default:
+              return <Contact />;
+          }
+        }
 
     return (
       <Router>
@@ -118,9 +145,18 @@ class App extends React.Component {
             handleSignup={this.handleSignup}
             handleLogout={this.handleLogout}
           />
-          <Navbar />
-          
-          {main_panel}
+                   
+          <Navbar //I suppose after initial load, click on Blog link
+          currentPage={this.state.currentPage}
+          handlePageChange={this.handlePageChange}
+        />
+        Based on `this.state.currentPage`, render the appropriate component
+        here.
+        {
+          renderGroup()
+        }
+
+          {/* {main_panel} */}
         </div>
     </Router>
     );
