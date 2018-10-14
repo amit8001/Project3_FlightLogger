@@ -1,10 +1,21 @@
 import React, { Component } from "react";
+import API from "../../utils/API";
 
 class AddFlightModal extends Component {
 
     state = {
-        remarks: "",
-
+        flightDate: "",
+        remarks:"",
+        dayhours: 0,
+        nighthours: 0,
+        actualhours: 0,
+        simulatedhours: 0,
+        totalhours: 0,
+        landingsDay: 0,
+        landingsNight: 0,
+        from: "",
+        to: "",
+        route:""
     };
 
     handleSubmit = event => {
@@ -18,6 +29,48 @@ class AddFlightModal extends Component {
           [name]: value
         });
     }
+
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log("Entered handleSubmit()");
+        API.postflightsForUser({
+            date: this.state.flightDate,
+            remarks: this.state.remarks,
+            flight_day: this.state.dayhours,
+            flight_night: this.state.nighthours,
+            flight_simulated: this.state.simulatedhours,
+            flight_actual: this.state.actualhours,
+            from: this.state.from,
+            to: this.state.to,
+            route: this.state.route,
+            landingsDay: this.state.landingsDay,
+            landingsNight: this.state.landingsNight,
+            user: this.props.pilot
+         })
+        .then(
+    
+            res => {
+                
+                console.log(JSON.stringify(res.data));
+               // this.loadBooks();
+               this.setState({
+                    flightDate: res.data.date,
+                    remarks:res.data.remarks,
+                    dayhours: res.data.flight_day,
+                    nighthours: res.data.flight_night,
+                    actualhours: res.data.flight_actual,
+                    simulatedhours: res.data.flight_simulated,
+                    landingsDay: res.data.landingsDay,
+                    landingsNight: res.data.landingsNight,
+                    from: res.data.from,
+                    to: res.data.to,
+                    route: res.data.route,
+              });
+              this.props.latest(this.props.pilot);
+            }
+        )
+        .catch(err => console.log(err));
+      }
 
     render() {
 
@@ -53,7 +106,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Date</span>
                                     </div>
                                     <input 
-                                        name="flight_date"
+                                        name="flightDate"
                                         type="date" 
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -64,7 +117,7 @@ class AddFlightModal extends Component {
 
                                 <div className="input-group mb-3">
                                     <div className="input-group-prepend">
-                                        <span className="input-group-text" >Aircraft</span>
+                                        <span className="input-group-text" >Remarks</span>
                                     </div>
                                     <input 
                                         name="remarks"
@@ -81,7 +134,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Day</span>
                                     </div>
                                     <input 
-                                        name="day"
+                                        name="dayhours"
                                         type="number" step="0.1" 
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -95,7 +148,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Night</span>
                                     </div>
                                     <input 
-                                        name="night"
+                                        name="nighthours"
                                         type="number" step="0.1"
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -109,7 +162,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Actual</span>
                                     </div>
                                     <input 
-                                        name="actual"
+                                        name="actualhours"
                                         type="number" step="0.1"
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -123,7 +176,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Simulated</span>
                                     </div>
                                     <input 
-                                        name="simulated"
+                                        name="simulatedhours"
                                         type="number" step="0.1"
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -137,7 +190,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Total</span>
                                     </div>
                                     <input 
-                                        name="total"
+                                        name="totalhours"
                                         type="number" step="0.1"
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -151,7 +204,7 @@ class AddFlightModal extends Component {
                                         <span className="input-group-text" >Landings Day</span>
                                     </div>
                                     <input 
-                                        name="landingsday"
+                                        name="landingsDay"
                                         type="number" 
                                         className="form-control" 
                                         onChange={this.handleInputChange} 
@@ -218,28 +271,6 @@ class AddFlightModal extends Component {
                                     />
                                 </div>
                                                                 
-                                {/* {
-                                    "remarks": "test landings",
-                                    "flight_day": 0.6,
-                                    "flight_night": 0.4,
-                                    "flight_actual": 0.3,
-                                    "flight_simulated": 0.7,
-                                    "id": 5,
-                                    "date": "2017-12-02T00:00:00.000Z",
-                                    "from": "47N",
-                                    "to": "47N",
-                                    "route": "",
-                                    "landingsDay": 1,
-                                    "landingsNight": 0,
-                                    "flightTime": 2,
-                                    "aircraft": {
-                                    "_id": "5bb410fc79d91261541888ac"
-                                    },
-                                    "user": {
-                                    "_id": "5bb13f3f768c0666183b605e"
-                                    }
-                                } */}
-
                             </div>
 
                             <div className="modal-footer">

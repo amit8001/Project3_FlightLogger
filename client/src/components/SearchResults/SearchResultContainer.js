@@ -27,6 +27,15 @@ class SearchResultContainer extends Component {
     .catch(err => console.log(err));
   }
 
+  getlatestFlights =id => {
+    API.getFlightsForUser(id)
+    .then(res => {
+      console.log(res.data);
+      this.setState({ results: res.data});
+    })
+    .catch(err => console.log(err));
+  } 
+
   render() {
 
     //added 10/9
@@ -40,13 +49,19 @@ class SearchResultContainer extends Component {
                   :
                   (
                   
-                    <FlightList results={this.state.results} />
+                    <FlightList 
+                      results={this.state.results} 
+                        
+                    />
                   )   
 
               }
 
         <div id ="footer">
-              <AddFlightModal />
+              <AddFlightModal 
+                pilot = {this.props.user_id}
+                latest = {this.getlatestFlights}
+                />
         </div> 
       </div>
     );
