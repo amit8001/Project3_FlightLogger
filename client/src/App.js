@@ -150,8 +150,7 @@ class App extends React.Component {
           currentPage={this.state.currentPage}
           handlePageChange={this.handlePageChange}
         />
-        Based on `this.state.currentPage`, render the appropriate component
-        here.
+       
         {
           renderGroup()
         }
