@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FlightList from "./FlightList";
 import API from "../../utils/API";
+import "./SearchResultContainer.css";
+import AddFlightModal from "./AddFlightModal";
 
 // import {
 //   BrowserRouter as Router,
@@ -25,6 +27,15 @@ class SearchResultContainer extends Component {
     .catch(err => console.log(err));
   }
 
+  getlatestFlights =id => {
+    API.getFlightsForUser(id)
+    .then(res => {
+      console.log(res.data);
+      this.setState({ results: res.data});
+    })
+    .catch(err => console.log(err));
+  } 
+
   render() {
 
     //added 10/9
@@ -38,19 +49,20 @@ class SearchResultContainer extends Component {
                   :
                   (
                   
-                    <FlightList results={this.state.results} />
+                    <FlightList 
+                      results={this.state.results} 
+                        
+                    />
                   )   
 
               }
 
-              {/* <Route 
-                {...props} 
-                  render={props => (
-                  this.state.loggedIn ?
-                    <Component {...props} /> :
-                    <Redirect to='/' />
-                )} 
-              /> */}
+        <div id ="footer">
+              <AddFlightModal 
+                pilot = {this.props.user_id}
+                latest = {this.getlatestFlights}
+                />
+        </div> 
       </div>
     );
   }

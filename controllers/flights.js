@@ -39,7 +39,7 @@ app.get("/api/flights/:id", function(req, res) {
  
 //Below code is to submit/POST a flight document (!! WIP !!)
 
-app.post("/api/flight/submit", function(req, res) {
+app.post("/api/flight/submit/", function(req, res) {
 
   console.log(req.body);
   var flight = new db.Flight(req.body); //need to use the same User var that was exported in index.js of models
