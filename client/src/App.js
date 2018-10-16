@@ -7,7 +7,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import WhoWeAre from "./components/WhoWeAre";
 import SearchResultContainer from "./components/SearchResults";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
@@ -22,23 +22,14 @@ class App extends React.Component {
     currentPage: "Home"
   };
   
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    console.log("handleInputChange: " + name + " / " + value);
-    this.setState({
-      [name]: value
-    });
-  }
-
-  handleSignup = event => {
-    event.preventDefault();
+  handleSignup = ({username, password, firstName, lastName, licenseNo, licenseType}) => {
     console.log("Entered handleSignup()");
-    API.signup({username: this.state.username, 
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                licenseNo: this.state.licenseNo,
-                licenseType: this.state.licenseType
+    API.signup({username: username, 
+                password: password,
+                firstName: firstName,
+                lastName: lastName,
+                licenseNo: licenseNo,
+                licenseType: licenseType
               })
     .then(
 
@@ -65,11 +56,10 @@ class App extends React.Component {
     .catch(err => console.log(err));
   }
 
-  handleLogin = event => {
-    event.preventDefault();
+  handleLogin = ({username, password}) => {
     console.log("Entered handleLogin()");
-    API.login({username: this.state.username, 
-               password: this.state.password})
+    API.login({username: username, 
+               password: password})
     .then(
       res => {
         console.log("Login response: " + JSON.stringify(res.data));
@@ -107,10 +97,7 @@ class App extends React.Component {
   
   handlePageChange = page => {
     this.setState({ currentPage: page });
-    
   };
-
- 
 
   render() {
   

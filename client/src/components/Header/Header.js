@@ -1,32 +1,30 @@
 import React from "react";
-import Button from "../Button";
+// import Button from "../Button";
+import LoginModalButton from "../LoginModalButton";
+import SignupModalButton from "../SignupModalButton";
 import "./Header.css";
 import Logo from "./capture.jpg";
 
 const Header = (props) => (
   <div className="page-header">
 
-    <img className="loggerLogo" src={Logo} />
-
-    {/* Signup Button/Modal */}
-    <Button 
-      type="signupModal"
-      loggedIn={props.loggedIn}
-      handleSubmit={props.handleSignup} 
-      handleInputChange={props.handleInputChange}
-      >Signup</Button>
+    <img className="loggerLogo" alt="Logo" src={Logo} />
 
     {/* Login Button/Modal */}
-    <Button 
-      type="loginModal"
+    <LoginModalButton 
       loggedIn={props.loggedIn}
       handleSubmit={props.handleLogin} 
-      handleInputChange={props.handleInputChange}
-    >Login</Button>
+    />
+
+    {/* Signup Button/Modal */}
+    <SignupModalButton 
+      loggedIn={props.loggedIn}
+      handleSubmit={props.handleSignup} 
+    />
 
     {/* Logout Button */}
     <button
-      className={"btn btn-primary btn-sm float-right " + (props.loggedIn ? "d-block" : "d-none")}
+      className={"btn btn-info btn-sm float-right " + (props.loggedIn ? "d-block" : "d-none")}
       onClick={props.handleLogout}
     >Logout</button>
 
