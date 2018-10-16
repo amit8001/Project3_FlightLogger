@@ -10,6 +10,12 @@ function aircraft_attr(aircraft) {
   <div>${aircraft.make} ${aircraft.type}</div>
 </div>`;
 };
+
+function aircraft_id(aircraft) {
+  return !aircraft ? null : `<div>
+  <div>${aircraft.ID}</div>
+</div>`;
+};
  
 function dateFormatter(cell) {
   if (!cell) {
@@ -23,16 +29,17 @@ class FlightList extends Component {
     return (
       <div>
         <BootstrapTable data={this.props.results}>
-          <TableHeaderColumn isKey dataField='_id'
+        <TableHeaderColumn  isKey dataField='aircraft'
+          dataFormat={aircraft_id}
           dataAlign='center'
-          headerAlign="left"
-          width="10"
-          tdStyle={
+           headerAlign="center"
+           width="15"
+           tdStyle={
               {backgroundColor: 'green'}}
           
           >
-            ID
-          </TableHeaderColumn>
+          Aircraft ID</TableHeaderColumn>
+
           <TableHeaderColumn dataField='remarks'
            dataAlign='center'
            headerAlign="center"
