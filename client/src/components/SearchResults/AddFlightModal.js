@@ -15,7 +15,8 @@ class AddFlightModal extends Component {
         landingsNight: 0,
         from: "",
         to: "",
-        route:""
+        route:"",
+        objId: null
     };
 
     handleSubmit = event => {
@@ -31,25 +32,12 @@ class AddFlightModal extends Component {
     }
 
 
-//     createSelectItems() {
-//         let items = [];         
-//         for (let i = 0; i <= this.props.results; i++) {             
-//              items.push(<option key={i} value={this.props.results[i].aircraft.ID}>{this.props.results[i].aircraft.ID}</option>);   
-//              //here I will be creating my options dynamically based on
-//              //what props are currently passed to the parent component
-//         }
-//         return items;
-//     }  
-   
-//    onDropdownSelected(e) {
-//        console.log("THE VAL", e.target.value);
-//        //here you will see the current selected value of the select input
-//    }
-
-
     handleSubmit = event => {
         event.preventDefault();
         console.log("Entered handleSubmit()");
+        
+        console.log("aircraft obj id "+this.state.value);
+
         API.postflightsForUser({
             date: this.state.flightDate,
             remarks: this.state.remarks,
@@ -62,7 +50,8 @@ class AddFlightModal extends Component {
             route: this.state.route,
             landingsDay: this.state.landingsDay,
             landingsNight: this.state.landingsNight,
-            user: this.props.pilot
+            user: this.props.pilot,
+            aircraft: this.refs.aircraftIdValue.value
          })
         .then(
     
@@ -145,34 +134,27 @@ class AddFlightModal extends Component {
                                         value = {this.state.remarks}
                                     />
                                 </div>
-
-                                <div>   
-
-                                    {/* {console.log(this.props.results.from)} */}
-                                    {
-                                        this.props.tailNumbers.map(a => (
-                                                 <li className = "list-group-item">
-                                                     {a.tNum}
-                                                 </li> )  
-                                         )
-                                    }   
-                                    {/* {this.props.tailNumbers()} */}
-
-                                    {/* <label>
-                                            Pick your favorite flavor:
-                                            <select value={this.state.remarks} >
-                                                <option value="grapefruit">Grapefruit</option>
-                                                <option value="lime">Lime</option>
-                                                <option value="coconut">Coconut</option>
-                                                <option value="mango">Mango</option>
-                                            </select>
-                                    </label>     */}
-
-                                 {/* <input type="select" onChange={this.onDropdownSelected} label="Multiple Select" multiple>
-                                        {this.createSelectItems()}
-                                 </input>        */}
-                                   
-
+ 
+                                <div className="input-group-prepend">
+                                        <span className="input-group-text" >Aircraft</span>
+                                    
+                                        {/* <select onChange={this.handleInputChange} value = {this.state.value}> */}
+                                        <select ref="aircraftIdValue"> 
+                                        {
+                                            this.props.tailNumbers.map(a => (
+                                                   
+                                                        <option 
+                                                            name = "objId"
+                                                            id={a.objId}
+                                                            value = {a.objId}
+                                                        >
+                                                            {a.tNum}
+                                                        </option> 
+                                                    
+                                                        )  
+                                                )
+                                        }   
+                                    </select>
                                 </div>
 
                                 <div className="input-group mb-3">

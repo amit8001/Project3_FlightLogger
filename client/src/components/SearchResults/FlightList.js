@@ -21,7 +21,7 @@ function dateFormatter(cell) {
   if (!cell) {
         return "";
   }
-  return `${moment(cell).format("MM/DD/YYYY")? moment(cell).format("MM/DD/YYYY"):moment(cell).format("MM/DD/YYYY") }`;
+  return `${moment.utc(cell).format("MM/DD/YYYY")? moment.utc(cell).format("MM/DD/YYYY"):moment.utc(cell).format("MM/DD/YYYY") }`;
 } 
 
 class FlightList extends Component {
