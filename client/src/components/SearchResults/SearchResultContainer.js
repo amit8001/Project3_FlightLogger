@@ -14,8 +14,13 @@ import AddFlightModal from "./AddFlightModal";
 
 class SearchResultContainer extends Component {
   state = {
-      results: []
+      results: [],
+    
   };
+
+  uniqueTailnumbers = [];
+
+
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
@@ -23,6 +28,10 @@ class SearchResultContainer extends Component {
     .then(res => {
       console.log(res.data);
       this.setState({ results: res.data});
+      console.log(this.state.results);
+      console.log("******"+this.state.results[0].aircraft.ID);
+    //  console.log("******"+this.state.results[0].aircraft);
+  
     })
     .catch(err => console.log(err));
   }
@@ -36,11 +45,29 @@ class SearchResultContainer extends Component {
     .catch(err => console.log(err));
   } 
 
+  getTailNumbers = () => {
+    let unique = [];
+    let arr_m = this.state.results;
+    for (let i=0; i<arr_m.length; ++i) {
+    //for (let i=0; i<1; ++i) {
+        let tailNumber = arr_m[i].aircraft.ID;
+        let aircraftobjId = arr_m[i].aircraft._id;
+        if(!unique.includes(tailNumber)) {
+            unique.push({tNum: tailNumber,
+                          objId:aircraftobjId});
+        }
+    }
+    return unique;
+ }
+
   render() {
 
     //added 10/9
     //const { component: Component, ...props } = this.props
+    this.uniqueTailnumbers = this.getTailNumbers();
+    console.log("****inside "+this.uniqueTailnumbers);
 
+    console.log(this.uniqueTailnumbers);
     return (
       <div>
            {
@@ -61,6 +88,9 @@ class SearchResultContainer extends Component {
               <AddFlightModal 
                 pilot = {this.props.user_id}
                 latest = {this.getlatestFlights}
+
+                tailNumbers={this.uniqueTailnumbers}
+                
                 />
         </div> 
       </div>

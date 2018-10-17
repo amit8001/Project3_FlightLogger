@@ -30,6 +30,23 @@ class AddFlightModal extends Component {
         });
     }
 
+
+//     createSelectItems() {
+//         let items = [];         
+//         for (let i = 0; i <= this.props.results; i++) {             
+//              items.push(<option key={i} value={this.props.results[i].aircraft.ID}>{this.props.results[i].aircraft.ID}</option>);   
+//              //here I will be creating my options dynamically based on
+//              //what props are currently passed to the parent component
+//         }
+//         return items;
+//     }  
+   
+//    onDropdownSelected(e) {
+//        console.log("THE VAL", e.target.value);
+//        //here you will see the current selected value of the select input
+//    }
+
+
     handleSubmit = event => {
         event.preventDefault();
         console.log("Entered handleSubmit()");
@@ -127,6 +144,35 @@ class AddFlightModal extends Component {
                                         aria-label="remarks"
                                         value = {this.state.remarks}
                                     />
+                                </div>
+
+                                <div>   
+
+                                    {/* {console.log(this.props.results.from)} */}
+                                    {
+                                        this.props.tailNumbers.map(a => (
+                                                 <li className = "list-group-item">
+                                                     {a.tNum}
+                                                 </li> )  
+                                         )
+                                    }   
+                                    {/* {this.props.tailNumbers()} */}
+
+                                    {/* <label>
+                                            Pick your favorite flavor:
+                                            <select value={this.state.remarks} >
+                                                <option value="grapefruit">Grapefruit</option>
+                                                <option value="lime">Lime</option>
+                                                <option value="coconut">Coconut</option>
+                                                <option value="mango">Mango</option>
+                                            </select>
+                                    </label>     */}
+
+                                 {/* <input type="select" onChange={this.onDropdownSelected} label="Multiple Select" multiple>
+                                        {this.createSelectItems()}
+                                 </input>        */}
+                                   
+
                                 </div>
 
                                 <div className="input-group mb-3">
