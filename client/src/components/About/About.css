@@ -1,0 +1,21 @@
+#about_id {
+    background-image: url("../img/plane.jpg");
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    background-position: top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+    color: white;
+    font-size: 125%;
+}
+
+p.a {
+    font: 15px arial, sans-serif;
+}
+
+p.b {
+    font: italic bold 12px/30px Georgia, serif;
+}

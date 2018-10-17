@@ -1,0 +1,34 @@
+#WhoWeAre_id {
+    background-image: url("../img/Team.2.jpg");
+    width: 100vw;
+    height: 100vw;
+    position: absolute;
+    background-position: top;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+#WhoWeAre2 {
+    text-align: center;
+    background-color: gray; 
+    color: orange;
+    font-size: 135%;
+}
+
+#firstName, #secondName, #thirdName, #fourthName, #fifthName {
+    background-color: gray;
+    color: orange;
+    padding: 2%;
+    margin: 2% 20% 2% 20%;
+    text-align: center;
+}
+
+p.a {
+    font: 15px arial, sans-serif;
+}
+
+p.b {
+    font: italic bold 12px/30px Georgia, serif;
+}
