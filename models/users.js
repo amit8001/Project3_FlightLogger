@@ -27,7 +27,7 @@ const userSchema = new Schema({
     required: "Password is Required",
     validate: [
       function(input) {
-        return input.length >= 3;
+        return input.length >= 1; // Todo: increase this to a better value in production
       },
       "Password should be longer."
     ]
