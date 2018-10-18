@@ -8,10 +8,10 @@ const About = () => (
 
 
 
-Flight Logger allows a student pilot or a professional pilot to log their flight time. 
+Sky Logger allows a student pilot or a professional pilot to log their flight time. 
 It is intended to replace or supplement the paper logbook that all pilots have
-historically used. Flight logger looks like the logbook that all pilots are 
-familiar with. In addition, Flight Logger provides aggregate totals, which 
+historically used. Sky logger looks like the logbook that all pilots are 
+familiar with. In addition, Sky Logger provides aggregate totals, which 
 simplify filling out FAA and insurance applications, which could take a pilot
 significant time to compile.
 
