@@ -25,6 +25,7 @@ app.get("/api/flights/:id", function(req, res) {
     db.Flight.find(
       {"user": req.params.id }   
     )
+    .sort({date:-1})
       .populate("aircraft")
       .populate("user")
       .then(function(dbFlight) {
