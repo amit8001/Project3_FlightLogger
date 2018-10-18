@@ -24,36 +24,50 @@ function dateFormatter(cell) {
   return `${moment.utc(cell).format("MM/DD/YYYY")? moment.utc(cell).format("MM/DD/YYYY"):moment.utc(cell).format("MM/DD/YYYY") }`;
 } 
 
+// const cellEditProp = {
+//   mode: 'click'
+// };
+
 class FlightList extends Component {
   render() {
     return (
       <div>
-        <BootstrapTable data={this.props.results}>
-        <TableHeaderColumn  isKey dataField='aircraft'
-          dataFormat={aircraft_id}
-          dataAlign='center'
-           headerAlign="center"
-           width="15"
-           tdStyle={
-              {backgroundColor: 'green'}}
-          
-          >
-          Aircraft ID</TableHeaderColumn>
-
-          <TableHeaderColumn dataField='remarks'
+        {/* <BootstrapTable data={this.props.results} cellEdit={ cellEditProp }> */}
+        <BootstrapTable data={this.props.results} >
+        <TableHeaderColumn dataField='date'
            dataAlign='center'
+           dataFormat={dateFormatter}
            headerAlign="center"
-           width="15"
+           width="10"
+           dataSort
            thStyle={
                {fontWeight: 'bolder', 
                color: 'white',
                backgroundColor:'black'
               }}
-          
+
+              tdStyle={
+                {backgroundColor: 'lightgrey',
+                fontWeight: 'bolder'}}
           >
-            remarks
+            Date
           </TableHeaderColumn>
-         <TableHeaderColumn dataField='aircraft'
+
+        <TableHeaderColumn  isKey dataField='aircraft'
+          dataFormat={aircraft_id}
+          dataAlign='center'
+           headerAlign="center"
+           width="12"
+          
+          thStyle={
+                {fontWeight: 'bolder', 
+                color: 'white',
+                backgroundColor:'black'
+          }}
+          >
+          Aircraft ID</TableHeaderColumn>
+
+          <TableHeaderColumn dataField='aircraft'
           dataFormat={aircraft_attr}
           dataAlign='center'
            headerAlign="center"
@@ -63,72 +77,12 @@ class FlightList extends Component {
                color: 'white',
                backgroundColor:'black'
               }}
-          >Aircraft Make</TableHeaderColumn>
-           <TableHeaderColumn dataField='flight_day'
+          >Aircraft Type</TableHeaderColumn>
+
+           <TableHeaderColumn dataField='from'
            dataAlign='center'
            headerAlign="center"
-           width="15"
-           thStyle={
-               {fontWeight: 'bolder', 
-               color: 'white',
-               backgroundColor:'black'
-              }}
-          >
-            Flight_Day
-          </TableHeaderColumn>
- <TableHeaderColumn dataField='flight_night'
-           dataAlign='center'
-           headerAlign="center"
-           width="15"
-           thStyle={
-               {fontWeight: 'bolder', 
-               color: 'white',
-               backgroundColor:'black'
-              }}
-          >
-            Flight_Night
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='flight_actual'
-           dataAlign='center'
-           headerAlign="center"
-           width="15"
-           thStyle={
-               {fontWeight: 'bolder', 
-               color: 'white',
-               backgroundColor:'black'
-              }}
-          >
-            Flight_Actual
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='flight_simulated'
-           dataAlign='center'
-           headerAlign="center"
-           width="15"
-           thStyle={
-               {fontWeight: 'bolder', 
-               color: 'white',
-               backgroundColor:'black'
-              }}
-          >
-            Flight_Simulated
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='date'
-           dataAlign='center'
-           dataFormat={dateFormatter}
-           headerAlign="center"
-           width="15"
-           thStyle={
-               {fontWeight: 'bolder', 
-               color: 'white',
-               backgroundColor:'black'
-              }}
-          >
-            Flight Date
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField='from'
-           dataAlign='center'
-           headerAlign="center"
-           width="15"
+           width="8"
            thStyle={
                {fontWeight: 'bolder', 
                color: 'white',
@@ -140,7 +94,7 @@ class FlightList extends Component {
           <TableHeaderColumn dataField='to'
            dataAlign='center'
            headerAlign="center"
-           width="15"
+           width="8"
            thStyle={
                {fontWeight: 'bolder', 
                color: 'white',
@@ -149,6 +103,96 @@ class FlightList extends Component {
           >
             To
           </TableHeaderColumn>
+          <TableHeaderColumn dataField='route'
+           dataAlign='center'
+           headerAlign="center"
+           width="8"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Route
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField='remarks'
+           dataAlign='left'
+           headerAlign="center"
+           width="25"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          
+          >
+            Remarks
+          </TableHeaderColumn>
+         
+          <TableHeaderColumn dataField='landingsDay'
+           dataAlign='center'
+           headerAlign="center"
+           width="8"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Lnds
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField='flight_day'
+           dataAlign='center'
+           headerAlign="center"
+           width="8"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Day
+          </TableHeaderColumn>
+ <TableHeaderColumn dataField='flight_night'
+           dataAlign='center'
+           headerAlign="center"
+           width="8"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Night
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='flight_actual'
+           dataAlign='center'
+           headerAlign="center"
+           width="10"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Actual
+          </TableHeaderColumn>
+          <TableHeaderColumn dataField='flight_simulated'
+           dataAlign='center'
+           headerAlign="center"
+           width="10"
+           thStyle={
+               {fontWeight: 'bolder', 
+               color: 'white',
+               backgroundColor:'black'
+              }}
+          >
+            Hood
+          </TableHeaderColumn>
+          
+         
         </BootstrapTable>
       </div>
     );
