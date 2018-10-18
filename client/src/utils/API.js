@@ -24,4 +24,9 @@ export default {
     return axios.post("/api/flight/submit/", flightInfo);
   },
 
+  getAllAircrafts: function() {
+    return axios.get("/api/aircrafts/");
+   // return axios.get("/api/flights/");
+  },
+
 };

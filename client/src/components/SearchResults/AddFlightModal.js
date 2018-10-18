@@ -145,10 +145,10 @@ class AddFlightModal extends Component {
                                                    
                                                         <option 
                                                             name = "objId"
-                                                            id={a.objId}
-                                                            value = {a.objId}
+                                                            id={a._id}
+                                                            value = {a._id}
                                                         >
-                                                            {a.tNum}
+                                                            {a.ID}
                                                         </option> 
                                                     
                                                         )  

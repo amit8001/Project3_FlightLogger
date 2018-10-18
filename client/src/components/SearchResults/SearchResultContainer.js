@@ -15,11 +15,8 @@ import AddFlightModal from "./AddFlightModal";
 class SearchResultContainer extends Component {
   state = {
       results: [],
-    
+      aircraftList: []
   };
-
-  uniqueTailnumbersObjects = [];
-  uniqueTailnumbers = [];
 
 
   // When this component mounts, search the Giphy API for pictures of kittens
@@ -28,12 +25,16 @@ class SearchResultContainer extends Component {
     .then(res => {
       console.log(res.data);
       this.setState({ results: res.data});
-    //  console.log(this.state.results);
-    //  console.log("******"+this.state.results[0].aircraft.ID);
-    //  console.log("******"+this.state.results[0].aircraft);
-  
     })
     .catch(err => console.log(err));
+
+    API.getAllAircrafts()
+    .then(res => {
+      console.log(res.data);
+      this.setState({ aircraftList: res.data}); 
+    })
+    .catch(err => console.log(err));
+
   }
 
   getlatestFlights =id => {
@@ -60,29 +61,46 @@ class SearchResultContainer extends Component {
   //   return unique;
   // }
 
-getTailNumbers = (arr) => {
-    let f = [];
-    //let arr = this.state.results;
-    return arr.filter(function(n) {
-      return f.indexOf(n.aircraft.ID) == -1 && f.push(n.aircraft.ID)
-    })
-  }
+// getTailNumbers = (arr) => {
+//     let f = [];
+//     //let arr = this.state.results;
+//     return arr.filter(function(n) {
+//       return f.indexOf(n.aircraft.ID) == -1 && f.push(n.aircraft.ID)
+//     })
+//   }
+
+getTailNumbers  =() => {
+  API.getAllAircrafts()
+  .then(res => {
+    console.log(res.data);
+    this.setState({ aircraftList: res.data});
+
+
+    // this.state.aircraftList.map(a => {
+    //   return ({tNum: a.ID,
+    //           objId:a._id})
+    // })
+
+
+  })
+  .catch(err => console.log(err));
+} 
 
   render() {
 
     //added 10/9
     //const { component: Component, ...props } = this.props
-    this.uniqueTailnumbersObjects = this.getTailNumbers(this.state.results);
-    console.log("****inside "+this.uniqueTailnumbersObjects);
+    //this.getTailNumbers();
+    //console.log("****inside "+this.aircraftobjects);
 
-    console.log(this.uniqueTailnumbersObjects);
+   // console.log(this.aircraftobjects);
 
-    this.uniqueTailnumbers = this.uniqueTailnumbersObjects.map(a => {
-      return ({tNum: a.aircraft.ID,
-              objId:a.aircraft._id})
-    })
+    // this.uniqueTailnumbers = this.aircraftobjects.map(a => {
+    //   return ({tNum: a.ID,
+    //           objId:a._id})
+    // })
 
-    console.log(this.uniqueTailnumbers);
+   // console.log(this.uniqueTailnumbers);
     return (
       <div>
            {
@@ -104,7 +122,7 @@ getTailNumbers = (arr) => {
                 pilot = {this.props.user_id}
                 latest = {this.getlatestFlights}
 
-                tailNumbers={this.uniqueTailnumbers}
+                tailNumbers={this.state.aircraftList}
                 
                 />
         </div> 

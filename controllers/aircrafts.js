@@ -3,7 +3,7 @@ const db = require("../models");
 module.exports = function(app) {
   
   // Route for getting all aircrafts from the db
-app.get("/api/aircrafts", function(req, res) {
+app.get("/api/aircrafts/", function(req, res) {
   // Using our Book model, "find" every book in our db
   db.Aircraft.find({})
     .then(function(dbAircraft) {
