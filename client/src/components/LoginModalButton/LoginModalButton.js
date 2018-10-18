@@ -97,7 +97,7 @@ class LoginModalButton extends React.Component {
                 {/* Close Button */}
                 <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.handleClose}>Close</button>
                 {/* Submit Button */}
-                <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.handleSubmit}>Submit</button>
+                <button type="button" className="btn btn-info" data-dismiss="modal" onClick={this.handleSubmit}>Submit</button>
               </div>
     
             </div>

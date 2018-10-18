@@ -27,6 +27,7 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
+    console.log(this.props.user_id);
     API.getFlightsForUser(this.props.user_id)
     .then(res => {
       console.log(res.data);

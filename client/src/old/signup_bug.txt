@@ -1,0 +1,192 @@
+new BootstrapTable
+node_modules/react-bootstrap-table/lib/BootstrapTable.js:187
+  184 | if (_util2.default.canUseDOM()) {
+  185 |   _this.isIE = document.documentMode;
+  186 | }
+> 187 | _this.store = new _TableDataStore.TableDataStore(_this.props.data ? _this.props.data.slice() : []);
+  188 | _this.isVerticalScroll = false;
+  189 | _this.initTable(_this.props);
+  190 | 
+View compiled
+constructClassInstance
+node_modules/react-dom/cjs/react-dom.development.js:11769
+  11766 |   }
+  11767 | }
+  11768 | 
+> 11769 | var instance = new ctor(props, context);
+  11770 | var state = workInProgress.memoizedState = instance.state !== null && instance.state !== undefined ? instance.state : null;
+  11771 | adoptClassInstance(workInProgress, instance);
+  11772 | 
+View compiled
+updateClassComponent
+node_modules/react-dom/cjs/react-dom.development.js:13491
+  13488 | if (current$$1 === null) {
+  13489 |   if (workInProgress.stateNode === null) {
+  13490 |     // In the initial pass we might need to construct the instance.
+> 13491 |     constructClassInstance(workInProgress, Component, nextProps, renderExpirationTime);
+  13492 |     mountClassInstance(workInProgress, Component, nextProps, renderExpirationTime);
+  13493 |     shouldUpdate = true;
+  13494 |   } else {
+View compiled
+beginWork
+node_modules/react-dom/cjs/react-dom.development.js:14090
+  14087 |   {
+  14088 |     var _Component6 = workInProgress.type;
+  14089 |     var _unresolvedProps3 = workInProgress.pendingProps;
+> 14090 |     return updateClassComponent(current$$1, workInProgress, _Component6, _unresolvedProps3, renderExpirationTime);
+  14091 |   }
+  14092 | case ClassComponentLazy:
+  14093 |   {
+View compiled
+performUnitOfWork
+node_modules/react-dom/cjs/react-dom.development.js:16416
+  16413 |   startProfilerTimer(workInProgress);
+  16414 | }
+  16415 | 
+> 16416 | next = beginWork(current$$1, workInProgress, nextRenderExpirationTime);
+  16417 | 
+  16418 | if (workInProgress.mode & ProfileMode) {
+  16419 |   // Record the render duration assuming we didn't bailout (or error).
+View compiled
+workLoop
+node_modules/react-dom/cjs/react-dom.development.js:16454
+  16451 | if (!isYieldy) {
+  16452 |   // Flush work without yielding
+  16453 |   while (nextUnitOfWork !== null) {
+> 16454 |     nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
+  16455 |   }
+  16456 | } else {
+  16457 |   // Flush asynchronous work until the deadline runs out of time.
+View compiled
+HTMLUnknownElement.callCallback
+node_modules/react-dom/cjs/react-dom.development.js:145
+  142 |     window.event = windowEvent;
+  143 |   }
+  144 | 
+> 145 |   func.apply(context, funcArgs);
+  146 |   didError = false;
+  147 | }
+  148 | 
+View compiled
+invokeGuardedCallbackDev
+node_modules/react-dom/cjs/react-dom.development.js:195
+  192 | // Synchronously dispatch our fake event. If the user-provided function
+  193 | // errors, it will trigger our global error handler.
+  194 | evt.initEvent(evtType, false, false);
+> 195 | fakeNode.dispatchEvent(evt);
+  196 | 
+  197 | if (didError) {
+  198 |   if (!didSetError) {
+View compiled
+invokeGuardedCallback
+node_modules/react-dom/cjs/react-dom.development.js:248
+  245 | function invokeGuardedCallback(name, func, context, a, b, c, d, e, f) {
+  246 |   hasError = false;
+  247 |   caughtError = null;
+> 248 |   invokeGuardedCallbackImpl$1.apply(reporter, arguments);
+  249 | }
+  250 | 
+  251 | /**
+View compiled
+replayUnitOfWork
+node_modules/react-dom/cjs/react-dom.development.js:15745
+  15742 | // Replay the begin phase.
+  15743 | isReplayingFailedUnitOfWork = true;
+  15744 | originalReplayError = thrownValue;
+> 15745 | invokeGuardedCallback(null, workLoop, null, isYieldy);
+  15746 | isReplayingFailedUnitOfWork = false;
+  15747 | originalReplayError = null;
+  15748 | if (hasCaughtError()) {
+View compiled
+renderRoot
+node_modules/react-dom/cjs/react-dom.development.js:16548
+  16545 | 
+  16546 | var failedUnitOfWork = nextUnitOfWork;
+  16547 | if (true && replayFailedUnitOfWorkWithInvokeGuardedCallback) {
+> 16548 |   replayUnitOfWork(failedUnitOfWork, thrownValue, isYieldy);
+  16549 | }
+  16550 | 
+  16551 | // TODO: we already know this isn't true in some cases.
+View compiled
+performWorkOnRoot
+node_modules/react-dom/cjs/react-dom.development.js:17387
+  17384 |   cancelTimeout(timeoutHandle);
+  17385 | }
+  17386 | var isYieldy = false;
+> 17387 | renderRoot(root, isYieldy, isExpired);
+  17388 | finishedWork = root.finishedWork;
+  17389 | if (finishedWork !== null) {
+  17390 |   // We've completed the root. Commit it.
+View compiled
+performWork
+node_modules/react-dom/cjs/react-dom.development.js:17295
+  17292 |   }
+  17293 | } else {
+  17294 |   while (nextFlushedRoot !== null && nextFlushedExpirationTime !== NoWork && (minExpirationTime === NoWork || minExpirationTime >= nextFlushedExpirationTime)) {
+> 17295 |     performWorkOnRoot(nextFlushedRoot, nextFlushedExpirationTime, true);
+  17296 |     findHighestPriorityRoot();
+  17297 |   }
+  17298 | }
+View compiled
+performSyncWork
+node_modules/react-dom/cjs/react-dom.development.js:17267
+  17264 | }
+  17265 | 
+  17266 | function performSyncWork() {
+> 17267 |   performWork(Sync, null);
+  17268 | }
+  17269 | 
+  17270 | function performWork(minExpirationTime, dl) {
+View compiled
+requestWork
+node_modules/react-dom/cjs/react-dom.development.js:17155
+  17152 | 
+  17153 | // TODO: Get rid of Sync and use current time?
+  17154 | if (expirationTime === Sync) {
+> 17155 |   performSyncWork();
+  17156 | } else {
+  17157 |   scheduleCallbackWithExpirationTime(root, expirationTime);
+  17158 | }
+View compiled
+scheduleWork
+node_modules/react-dom/cjs/react-dom.development.js:16949
+  16946 | // ...unless this is a different root than the one we're rendering.
+  16947 | nextRoot !== root) {
+  16948 |   var rootExpirationTime = root.expirationTime;
+> 16949 |   requestWork(root, rootExpirationTime);
+  16950 | }
+  16951 | if (nestedUpdateCount > NESTED_UPDATE_LIMIT) {
+  16952 |   // Reset this back to zero so subsequent updates don't throw.
+View compiled
+enqueueSetState
+node_modules/react-dom/cjs/react-dom.development.js:11623
+  11620 |   }
+  11621 | 
+  11622 |   enqueueUpdate(fiber, update);
+> 11623 |   scheduleWork(fiber, expirationTime);
+  11624 | },
+  11625 | enqueueReplaceState: function (inst, payload, callback) {
+  11626 |   var fiber = get(inst);
+View compiled
+SearchResultContainer../node_modules/react/cjs/react.development.js.Component.setState
+node_modules/react/cjs/react.development.js:413
+  410 |  */
+  411 | Component.prototype.setState = function (partialState, callback) {
+  412 |   !(typeof partialState === 'object' || typeof partialState === 'function' || partialState == null) ? invariant(false, 'setState(...): takes an object of state variables to update or a function which returns an object of state variables.') : void 0;
+> 413 |   this.updater.enqueueSetState(this, partialState, callback, 'setState');
+  414 | };
+  415 | 
+  416 | /**
+View compiled
+(anonymous function)
+src/components/SearchResults/SearchResultContainer.js:33
+  30 | API.getFlightsForUser(this.props.user_id)
+  31 | .then(res => {
+  32 |   console.log(res.data);
+> 33 |   this.setState({ results: res.data});
+  34 | })
+  35 | .catch(err => console.log(err));
+  36 | 
+View compiled
+This screen is visible only in development. It will not appear if the app crashes in production.
+Open your browser’s developer console to further inspect this error.

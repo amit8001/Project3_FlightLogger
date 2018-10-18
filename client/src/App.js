@@ -36,11 +36,17 @@ class App extends React.Component {
       res => {
         console.log("Signup response: " + JSON.stringify(res.data.errmsg));
         if (res.data.errmsg) {
+          console.log("handleSignup() errmsg received");
           let errmsg = (res.data.code === 11000) ? 
             "Duplicate username already exists!" : 
             res.data.errmsg;
           alert(errmsg);
+        } else if (res.data.errors) {
+          console.log("handleSignup() errors received");
+          alert(res.data.errors.password.message);
         } else {
+          console.log("handleSignup() response received");
+          console.log(res.data);
           this.setState({
             _userId: res.data._id,
             username: res.data.username,
