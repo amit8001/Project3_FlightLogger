@@ -15,7 +15,8 @@ class AddFlightModal extends Component {
         landingsNight: 0,
         from: "",
         to: "",
-        route:""
+        route:"",
+        objId: null
     };
 
     handleSubmit = event => {
@@ -30,9 +31,13 @@ class AddFlightModal extends Component {
         });
     }
 
+
     handleSubmit = event => {
         event.preventDefault();
         console.log("Entered handleSubmit()");
+        
+        console.log("aircraft obj id "+this.state.value);
+
         API.postflightsForUser({
             date: this.state.flightDate,
             remarks: this.state.remarks,
@@ -45,7 +50,8 @@ class AddFlightModal extends Component {
             route: this.state.route,
             landingsDay: this.state.landingsDay,
             landingsNight: this.state.landingsNight,
-            user: this.props.pilot
+            user: this.props.pilot,
+            aircraft: this.refs.aircraftIdValue.value
          })
         .then(
     
@@ -127,6 +133,28 @@ class AddFlightModal extends Component {
                                         aria-label="remarks"
                                         value = {this.state.remarks}
                                     />
+                                </div>
+ 
+                                <div className="input-group-prepend">
+                                        <span className="input-group-text" >Aircraft</span>
+                                    
+                                        {/* <select onChange={this.handleInputChange} value = {this.state.value}> */}
+                                        <select ref="aircraftIdValue"> 
+                                        {
+                                            this.props.tailNumbers.map(a => (
+                                                   
+                                                        <option 
+                                                            name = "objId"
+                                                            id={a._id}
+                                                            value = {a._id}
+                                                        >
+                                                            {a.ID}
+                                                        </option> 
+                                                    
+                                                        )  
+                                                )
+                                        }   
+                                    </select>
                                 </div>
 
                                 <div className="input-group mb-3">
