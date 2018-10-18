@@ -106,7 +106,7 @@ class FlightList extends Component {
           <TableHeaderColumn dataField='route'
            dataAlign='center'
            headerAlign="center"
-           width="8"
+           width="12"
            thStyle={
                {fontWeight: 'bolder', 
                color: 'white',
@@ -119,7 +119,7 @@ class FlightList extends Component {
           <TableHeaderColumn dataField='remarks'
            dataAlign='left'
            headerAlign="center"
-           width="25"
+           width="20"
            thStyle={
                {fontWeight: 'bolder', 
                color: 'white',
