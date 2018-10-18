@@ -7,6 +7,7 @@ export default {
     console.log("Response: " + JSON.stringify(response));
     return response;
   },
+  
   login: function(loginInfo) {
     console.log("Entered API.login(" + JSON.stringify(loginInfo) + ")");
     let response =  axios.post("/api/login", loginInfo);
