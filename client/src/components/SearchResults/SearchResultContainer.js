@@ -128,7 +128,15 @@ getTailNumbers  =() => {
             <Sidebar show={this.state.sideBarOpen} 
             // totalhours
             totalHours={
-              this.state.results.length > 0?this.addAllFlights(this.state.results):"No flights found"}
+                this.state.results.length > 0?this.addAllFlights(this.state.results):"No flights found"}
+            hoursRemaining={
+              this.state.results.length > 0?100 - this.addAllFlights(this.state.results):"No flights found"}
+            lastRemark={
+              this.state.results.length > 0?this.state.results[0].remarks:"No flights found"}
+            lastTakeoffLocation={
+              this.state.results.length > 0?this.state.results[0].from:"No flights found"}
+            lastLandLocation={
+              this.state.results.length > 0?this.state.results[0].to:"No flights found"}
               />
               {/* Add the following */}
             {/* hours remaining till license min of 40 */}
